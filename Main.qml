@@ -702,7 +702,7 @@ ApplicationWindow {
                           + " / " + AppState.maxSafeHeight
                 }
                 Text {
-                    text: "depth:" + theStackView.depth
+                    text: "depth:" + theStackView.depth + " / depth 2: Push SwipeView"
                 }
 
                 Row {
@@ -710,7 +710,11 @@ ApplicationWindow {
                     Button {
                         text: "Push"
                         onClicked: {
-                            theStackView.pushItem(appPageComponent)
+                            if(theStackView.depth === 2) {
+                                theStackView.pushItem(swipeViewPageComponent)
+                            } else {
+                                theStackView.pushItem(appPageComponent)
+                            }
                         }
                     }
                     Button {
@@ -900,6 +904,58 @@ ApplicationWindow {
         }
     } // myPopupC
 
+    Component {
+        id: swipeViewPageComponent
+        Page {
+            id: swipeViewPage
+            SwipeView {
+                id: swipeView
+                currentIndex: 1
+                anchors.fill: parent
+                Repeater {
+                    model: 3
+                    Pane {
+                        width: SwipeView.view.width
+                        height: SwipeView.view.height
+                        Column {
+                            spacing: 40
+                            width: parent.width
+                            Label {
+                                width: parent.width
+                                wrapMode: Label.Wrap
+                                horizontalAlignment: Qt.AlignHCenter
+                                text: "S W I P E to left or right. There are 3 Pages. Take a look at PageIndicator at bottom"
+                            } // label
+                            Row {
+                                id: buttonRow
+                                Button {
+                                    text: "Push"
+                                    onClicked: {
+                                        theStackView.pushItem(appPageComponent)
+                                    }
+                                }
+                                Button {
+                                    enabled: theStackView.depth > 1
+                                    text: "Pop"
+                                    onClicked: {
+                                        theStackView.popCurrentItem()
+                                    }
+                                }
+                            } // buttonRow
+                        } // column
+                    } // pane
+                } // repeater
+            } // swipeView
+            PageIndicator {
+                count: swipeView.count
+                currentIndex: swipeView.currentIndex
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+            } // pageIndicator
+        } // swipeViewPage
+    } // swipeViewPageComponent
+
+
     // F U N C T I O N S
 
     // switching styleHint doesn't work reliable without the timer
@@ -980,6 +1036,7 @@ ApplicationWindow {
 // Test on Android devices with NavigationBar vs Gestures
 // Test TabBar in Footer
 // Some more different Pages with ListView and more pushing on StackView
-// Test SwipeView
+// SwipeView test added. looks good in Portrait, also in Landscape on iOS
+//           Landscape on Android with NavigationBar: ToDo for better UX
 
 // Have FUN :) ... ekke
