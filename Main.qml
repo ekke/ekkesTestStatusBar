@@ -10,7 +10,7 @@
 // Qt6 blog: https://ekkesapps.wordpress.com/
 
 // requires Qt 6.9.2+
-// 2025-08-31
+// 2025-09-01
 
 // This App is a playground to test Qt SafeArea 6.9 behavior
 // Download from GitHub: https://github.com/ekke/ekkesTestStatusBar
@@ -710,6 +710,7 @@ ApplicationWindow {
                     Button {
                         text: "Push"
                         onClicked: {
+                            // PUSH SwipeView or Page
                             if(theStackView.depth === 2) {
                                 theStackView.pushItem(swipeViewPageComponent)
                             } else {
@@ -904,6 +905,8 @@ ApplicationWindow {
         }
     } // myPopupC
 
+    // SWIPEVIEW
+    // can be pushed on StackView if depth is 2
     Component {
         id: swipeViewPageComponent
         Page {
@@ -1037,6 +1040,7 @@ ApplicationWindow {
 // Test TabBar in Footer
 // Some more different Pages with ListView and more pushing on StackView
 // SwipeView test added. looks good in Portrait, also in Landscape on iOS
-//           Landscape on Android with NavigationBar: ToDo for better UX
+//           Landscape on Android with NavigationBar:
+//           see https://bugreports.qt.io/browse/QTBUG-139690
 
 // Have FUN :) ... ekke
