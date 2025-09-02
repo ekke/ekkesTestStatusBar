@@ -66,7 +66,9 @@ ApplicationWindow {
 
     // F L A G S
     // NoTitleBarBackgroundHint needed for macOS
-    flags: Qt.ExpandedClientAreaHint | Qt.NoTitleBarBackgroundHint
+    // don't forget to set QT.Window
+    // see discussions at https://bugreports.qt.io/browse/QTBUG-135808
+    flags: Qt.Window | Qt.ExpandedClientAreaHint | Qt.NoTitleBarBackgroundHint
 
     // S A F E    A R E A
     // see also discussions about Expanded Client Areas:
