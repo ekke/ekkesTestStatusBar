@@ -650,6 +650,19 @@ ApplicationWindow {
                 color: "red"
             } // bottomRightMarker
 
+            // Test xxl menu
+            Button {
+                id: xxlButton
+                anchors.left: topLeftMarker.right
+                anchors.leftMargin: 24
+                anchors.top: topLeftMarker.top
+                anchors.topMargin: 24
+                text: "Menu XXL"
+                onClicked: {
+                    xxlMenu.open()
+                }
+            }
+
             Button {
                 id: openDrawerButton
                 anchors.left: parent.left
@@ -740,6 +753,29 @@ ApplicationWindow {
         } // appPage
     } // appPageComponent
     // M E N U
+    // XXL MENU
+    Menu {
+        id: xxlMenu
+        // respects the safe area margins from ApplicationWindow
+        // see https://bugreports.qt.io/browse/QTBUG-139695
+        topMargin: AppState.safeAreaTop
+        bottomMargin: AppState.safeAreaBottom
+        MenuItem {
+            text: "the first"
+        }
+        Repeater {
+            id: myRepeater
+            model: 30
+            MenuItem {
+                text: "test"
+            }
+        }
+        MenuItem {
+            text: "the last"
+        }
+    } // xxlMenu
+
+
     Menu {
         id: myPopupMenu
         width: 360
