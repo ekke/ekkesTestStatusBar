@@ -22,6 +22,24 @@
 //            https://doc.qt.io/qt-6/qml-qtquick-controls-applicationwindow.html
 //   QtBlog (https://www.qt.io/blog/expanded-client-areas-and-safe-areas-in-qt-6.9) before !
 
+// Disclaimer
+// The design of the Safe Areas in Qt Quick is that the safe area of a child item is
+// affected by the position of its parent items. Ie, if the parent accounts for safe
+// areas by laying out all of its children within the safe area, the child items reflect
+// a safe area of 0.
+// Reducing the safe area query to a single top level AppState loses this feature.
+// Why using single top level SafeArea margins ?
+// ekke has 15+ mobile business apps, some grown over 8+ years with hundreds of Pages etc.
+// ekke already implemented an own way to get SafeAreas from top level years ago.
+// This worked for iOS, but not for Android.
+// Now with Qt 6.9 Qt provides a much better and more intelligent way for Controls
+// to know about their Safe Areas and for new Apps ekke will go this modern way.
+// But for now – all existing apps must be ported from 6.7 QMake to 6.9 CMake and
+// multimedia to ffmpeg and trying to get rid of linter warnings …
+// So as first step ekke will use the new SafeAreas for Android and iOS, but only
+// from top level. Goal for this 1st step: simply do a find and replace to get the
+// top level values from QML SafeAreas instead of previous C++ Singleton.
+
 // Attention: You can change Material colors and stylehints using Menu 'Material'
 //            And from 'Drawer' you can choose different ways to colorize
 //            Both together sometimes causes 'Material' color changes not to work
