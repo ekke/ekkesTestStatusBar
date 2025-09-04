@@ -10,7 +10,7 @@
 // Qt6 blog: https://ekkesapps.wordpress.com/
 
 // requires Qt 6.9.2+
-// 2025-09-01
+// 2025-09-04
 
 // This App is a playground to test Qt SafeArea 6.9 behavior
 // Download from GitHub: https://github.com/ekke/ekkesTestStatusBar
@@ -20,7 +20,7 @@
 //   Qt Docs  Safe Areas and ApplicatiionWindow:
 //            https://doc.qt.io/qt-6/qml-qtquick-safearea.html
 //            https://doc.qt.io/qt-6/qml-qtquick-controls-applicationwindow.html
-//   QtBlog (https://www.qt.io/blog/expanded-client-areas-and-safe-areas-in-qt-6.9) before !
+//   QtBlog:  https://www.qt.io/blog/expanded-client-areas-and-safe-areas-in-qt-6.9
 
 // Disclaimer
 // The design of the Safe Areas in Qt Quick is that the safe area of a child item is
