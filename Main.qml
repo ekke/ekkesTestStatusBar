@@ -47,6 +47,7 @@
 //            Have not spend time on this, because these changes aren't under
 //            control from user in ekkes apps, so no real-life-scenarios ;-)
 
+
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
@@ -1098,5 +1099,7 @@ ApplicationWindow {
 // SwipeView test added. looks good in Portrait, also in Landscape on iOS
 //           Landscape on Android with NavigationBar:
 //           see https://bugreports.qt.io/browse/QTBUG-139690
+// Android Split Screen: from discussions at https://bugreports.qt.io/browse/QTBUG-135808:
+//                       SafeAreas don't report correct values if Android Split Screen in 6.9.2
 
 // Have FUN :) ... ekke
