@@ -10,7 +10,7 @@
 // Qt6 blog: https://ekkesapps.wordpress.com/
 
 // requires Qt 6.9.2+
-// 2025-09-04
+// 2025-09-05
 
 // This App is a playground to test Qt SafeArea 6.9 behavior
 // Download from GitHub: https://github.com/ekke/ekkesTestStatusBar
@@ -904,6 +904,15 @@ ApplicationWindow {
     } // myPopupA
 
     // This Popup uses all available Screensize without all the NonSafe Areas
+
+    // TopLevel SafeArea (QML Singleton) vs Qt built-in SafeAreas (parent knows about)
+    //   From content Text you can compare the SafeArea values from QML Singleton AppState
+    //   and from Popup's parent (Overlay.overlay) the attached properties SafeArea margins
+    //   on Android in Portrait and Landscape it's the same
+    //   on iOS in Portrait it's the same, but in Landscape it's different, because
+    //   we have changed the side, where no notch is to 24
+    // Also take a look at Popup's width and height where we use covenient values
+    //   maxSafeWidth and maxSafeHeight from AppState
     Popup {
         id: myPopupB
         x: AppState.safeAreaLeft
@@ -915,7 +924,10 @@ ApplicationWindow {
         parent: Overlay.overlay
         contentItem: Text {
             id: contentTextB
-            text: "Safe Content Popup B\nx:SafeAreaLeft, y:SafeAreaTop\nwidth and height respects Safe Areas\nPortrait and Landscape"
+            text: "Safe Content Popup B\n\nx:SafeAreaLeft, y:SafeAreaTop\nwidth and height respects Safe Areas\n\nworks in Portrait and Landscape\n\n"
+                + "AppState values:\nLeft :"+AppState.safeAreaLeft+" Top: "+AppState.safeAreaTop
+                + " Right: "+AppState.safeAreaRight+" Bottom: "+AppState.safeAreaBottom
+                + "\n\nSafeArea Margins from Overlay:\n"+myPopupB.parent.SafeArea.margins
             Button {
                 anchors.bottom: contentTextB.bottom
                 text: "Close"
