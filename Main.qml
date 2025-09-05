@@ -39,6 +39,8 @@
 // So as first step ekke will use the new SafeAreas for Android and iOS, but only
 // from top level. Goal for this 1st step: simply do a find and replace to get the
 // top level values from QML SafeAreas instead of previous C++ Singleton.
+// Take a look at 'PopupB' below, where we compare SafeArea values from top
+// vs built-in attached properties.
 
 // Attention: You can change Material colors and stylehints using Menu 'Material'
 //            And from 'Drawer' you can choose different ways to colorize
