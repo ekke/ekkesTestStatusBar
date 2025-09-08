@@ -41,6 +41,9 @@
 // top level values from QML SafeAreas instead of previous C++ Singleton.
 // Take a look at 'PopupB' below, where we compare SafeArea values from top
 // vs built-in attached properties.
+// Hint: if you need top level Safe Area margins, then from anywhere in the app
+//       simply use 'Overlay.overlay.SafeArea.margins'
+//       For ekke's app this doesn't work because we adjusted the origin Safe Areas
 
 // Attention: You can change Material colors and stylehints using Menu 'Material'
 //            And from 'Drawer' you can choose different ways to colorize
