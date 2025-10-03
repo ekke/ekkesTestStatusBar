@@ -989,6 +989,9 @@ ApplicationWindow {
                 id: swipeView
                 currentIndex: 1
                 anchors.fill: parent
+                // important: without setting clip:true you'll see content from prev/next Page in Landscape
+                // ATM on Qt 6.9.3 this looks best. will try again with 6.10.1 (QTBUG-139690)
+                clip: true
                 Repeater {
                     model: 3
                     Pane {
