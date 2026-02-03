@@ -1,6 +1,6 @@
 // Main.qml   (apptest_statusbar)
 
-// (c) 2025 Ekkehard Gentz (ekke) - Independent - Rosenheim Germany
+// (c) 2025...2026 Ekkehard Gentz (ekke) - Independent - Rosenheim Germany
 // Qt Champion 2016 | 2024
 // @ekkescorner.bsky.social
 // @ekkescorner (X - aka Twitter)
@@ -9,8 +9,8 @@
 // GitHub: https://github.com/ekke
 // Qt6 blog: https://ekkesapps.wordpress.com/
 
-// requires Qt 6.9.2+
-// 2025-09-05
+// requires Qt 6.10.1+
+// 2026-02-03
 
 // This App is a playground to test Qt SafeArea 6.9 behavior
 // Download from GitHub: https://github.com/ekke/ekkesTestStatusBar
@@ -81,7 +81,7 @@ ApplicationWindow {
     // Portrait Invers Qt.InvertedPortraitOrientation: 4
     // Landscape Invers Qt.InvertedLandscapeOrientation: 8
     // Hint: on iOS inverted is only working on 6.9.2+
-    // see https://bugreports.qt.io/browse/QTBUG-137249
+    // see QTBUG-137249
     Screen.onOrientationChanged: {
         console.log("appWindow Screen.Orientation Changed: ",
                     Screen.orientation)
@@ -91,12 +91,11 @@ ApplicationWindow {
     // F L A G S
     // NoTitleBarBackgroundHint needed for macOS
     // don't forget to set QT.Window
-    // see discussions at https://bugreports.qt.io/browse/QTBUG-135808
+    // see discussions at QTBUG-135808
     flags: Qt.Window | Qt.ExpandedClientAreaHint | Qt.NoTitleBarBackgroundHint
 
     // S A F E    A R E A
-    // see also discussions about Expanded Client Areas:
-    // https://bugreports.qt.io/browse/QTBUG-135808
+    // see also discussions about Expanded Client Areas: QTBUG-135808
     onSafeAreaMarginsChanged: {
         console.log("appWindow onSafeAreaMarginsChanged")
         safeAreaTimer.start()
@@ -780,8 +779,7 @@ ApplicationWindow {
     // XXL MENU
     Menu {
         id: xxlMenu
-        // respects the safe area margins from ApplicationWindow
-        // see https://bugreports.qt.io/browse/QTBUG-139695
+        // respects the safe area margins from ApplicationWindow, see QTBUG-139695
         topMargin: AppState.safeAreaTop
         bottomMargin: AppState.safeAreaBottom
         MenuItem {
@@ -990,7 +988,7 @@ ApplicationWindow {
                 currentIndex: 1
                 anchors.fill: parent
                 // important: without setting clip:true you'll see content from prev/next Page in Landscape
-                // ATM on Qt 6.9.3 this looks best. will try again with 6.10.1 (QTBUG-139690)
+                // ATM on Qt 6.9.3 this looks best. works great with 6.10.1+ (QTBUG-139690)
                 clip: true
                 Repeater {
                     model: 3
@@ -1103,8 +1101,8 @@ ApplicationWindow {
         // used as background for System StatusBar
         // Teal needs white textcolor, so ColorScheme Dark is set
         // see materialButton and myMaterialMenu to test other colors
-        // Hint: in Qt 6.9.2 switching StyleHints doesn't work on Android
-        // see https://bugreports.qt.io/browse/QTBUG-137248
+        // Qt 6.10.1: without the Timer it seems to work on Android,
+        // but not always on iOS to set the colorScheme
         // Application.styleHints.colorScheme = appWindow.myStatusbarCholorScheme
         styleHintsTimer.start()
         updateSafeArea()
@@ -1116,10 +1114,12 @@ ApplicationWindow {
 // Test on Android devices with NavigationBar vs Gestures
 // Test TabBar in Footer
 // Some more different Pages with ListView and more pushing on StackView
-// SwipeView test added. looks good in Portrait, also in Landscape on iOS
+
+// REMARKS:
+// SwipeView tested. looks good in Portrait, also in Landscape on iOS
 //           Landscape on Android with NavigationBar:
-//           see https://bugreports.qt.io/browse/QTBUG-139690
-// Android Split Screen: from discussions at https://bugreports.qt.io/browse/QTBUG-135808:
-//                       SafeAreas don't report correct values if Android Split Screen in 6.9.2
+//           there was an issue, see QTBUG-139690 fixed with Qt 6.10.1+
+// Android Split Screen: see discussions at QTBUG-135808:
+//           seems to work now with Qt 6.10.1+
 
 // Have FUN :) ... ekke
