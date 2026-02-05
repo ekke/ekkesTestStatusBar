@@ -44,7 +44,7 @@ if(ANDROID)
     # OPENSSL
     # https://github.com/KDAB/android_openssl
     # points to OpenSSL installed by QtCreator with Android SDK Tools
-    include(/Applications/daten/_android_sdk/tools_6_9_0/android_openssl/android_openssl.cmake)
+    include(/Applications/daten/_android_sdk/tools_6_10_2/android_openssl/android_openssl.cmake)
         add_android_openssl_libraries(apptest_statusbar)
 endif()
 
