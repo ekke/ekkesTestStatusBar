@@ -471,6 +471,17 @@ ApplicationWindow {
             color: appWindow.nonSafeAreaBottomColor
         } // drawerBottomBackground
 
+        // DRAWER LEFT (valid only if landscape)
+        Rectangle {
+            id: drawerLeftBackground
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.topMargin: AppState.safeAreaTop
+            width: AppState.safeAreaLeft
+            height: parent.height - AppState.safeAreaTop
+            color: appWindow.nonSafeAreaLeftColor
+        }
+
         // FLICKABLE WITH BUTTONS
         Flickable {
             id: drawerFlickable
